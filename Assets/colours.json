@@ -1,0 +1,27 @@
+const theme = createMuiTheme({
+  palette: {
+    primary: { // Dark Mode for this example- Please feel free to change.
+      main: '#131313', // Black: Used for Background
+          light: '#fff',// White: Used for Typography and Button Hover
+              dark: '#444444', // Dark Monochrome (Dark Gray): Used on Borders etc,
+        contrastText: '#', // What does this do?
+    },
+    secondary: { // Light Mode for this example- Please feel free to change.
+      main: '#fff', // White: Used for Background
+          light: '#131313',// Black: Used for Typography and Button Hover
+              dark: '#c4c4c4', // Light Monochrome (Light Gray): Used on Borders etc,
+      contrastText: '#', // What does this do?
+    },
+
+    purple: '#800080', // Buttons
+    violet: '#6236ff', // Loading Bar
+    violet50: '#6236ff', // Loading Digit 
+    // Used by `getContrastText()` to maximize the contrast between
+    // the background and the text.
+    contrastThreshold: 3,
+    // Used by the functions below to shift a color's luminance by approximately
+    // two indexes within its tonal palette.
+    // E.g., shift from Red 500 to Red 300 or Red 700.
+    tonalOffset: 0.2,
+  },
+});

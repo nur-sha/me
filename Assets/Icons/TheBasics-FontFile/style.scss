@@ -1,0 +1,100 @@
+@import "variables";
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?82nl0q');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?82nl0q#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?82nl0q') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?82nl0q') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?82nl0q##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-Close {
+  &:before {
+    content: $icon-Close; 
+  }
+}
+.icon-Copy {
+  &:before {
+    content: $icon-Copy; 
+  }
+}
+.icon-Down {
+  &:before {
+    content: $icon-Down; 
+  }
+}
+.icon-File {
+  &:before {
+    content: $icon-File; 
+  }
+}
+.icon-Filled {
+  &:before {
+    content: $icon-Filled; 
+  }
+}
+.icon-Left {
+  &:before {
+    content: $icon-Left; 
+  }
+}
+.icon-Menu {
+  &:before {
+    content: $icon-Menu; 
+  }
+}
+.icon-Outlined {
+  &:before {
+    content: $icon-Outlined; 
+  }
+}
+.icon-Right {
+  &:before {
+    content: $icon-Right; 
+  }
+}
+.icon-ToBottom {
+  &:before {
+    content: $icon-ToBottom; 
+  }
+}
+.icon-ToLeft {
+  &:before {
+    content: $icon-ToLeft; 
+  }
+}
+.icon-ToRight {
+  &:before {
+    content: $icon-ToRight; 
+  }
+}
+.icon-ToTop {
+  &:before {
+    content: $icon-ToTop; 
+  }
+}
+.icon-Up {
+  &:before {
+    content: $icon-Up; 
+  }
+}
+
