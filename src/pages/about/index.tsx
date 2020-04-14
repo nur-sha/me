@@ -1,8 +1,6 @@
-import React from 'react';
+import React, { ReactNode, ReactElement, ElementType } from 'react';
 import Grid from '@material-ui/core/Grid';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-
-import potrait from '../../assets/images/about.jpeg';
 import {
   makeStyles,
   createStyles,
@@ -12,97 +10,44 @@ import {
   ListItemText,
   ListItemIcon,
 } from '@material-ui/core';
+import PotraitSection from './sections/potraitSection';
+import data from './data';
+import BasicInfo from './sections/basinInfo';
+import SectionWrapper from './sections/sectionWrapper';
+import Interest from './sections/interest';
+import Language from './sections/language';
 
 const useStyles = makeStyles(theme =>
   createStyles({
-    imagePotrait: {
-      width: '100%',
-    },
-    section: {},
-    flexContainer: {
-      display: 'flex',
-      flexDirection: 'row',
-      padding: 0,
-    },
-    listItem: {
-      width: 'auto',
-      paddingLeft: 0,
-      paddingTop: '6px',
-    },
-    listItemIcon: {
-      minWidth: 'auto',
+    pt2rem: {
+      paddingTop: '2rem',
     },
   }),
 );
 
 const About = () => {
   const classes = useStyles();
+
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} md={5}>
-        <img className={classes.imagePotrait} src={potrait} alt='Nurshahadah' />
-        <span className='title'>Nurshahadah</span>
-        <span className='designation'>UX Engineer</span>
+      <Grid item xs={12} md={6}>
+        <PotraitSection content={data.potraitSection} />
       </Grid>
-      <Grid item xs={12} md={7}>
-        <Typography variant='h2'>Education</Typography>
-        <Typography>
-          “Lorem ipsum dolor sit amet, consectetuer adipiscing elit. “
+      <Grid item xs={12} md={5}>
+        <Typography variant='h2'>About</Typography>
+        <Typography variant='h4'>
+          “Lorem ipsum dolor sit amet, consectetuer <br /> adipiscing elit. “
         </Typography>
-        <div className={classes.section}>
-          Age: 30 <br />
-          Experience: 5 yeaers <br />
-          Residence: Singaporean <br />
-        </div>
-        <div className={classes.section}>
-          <Typography variant='h3'>Interest</Typography>
-          <List>
-            <ListItem disableGutters>
-              <ListItemIcon>
-                <FiberManualRecordIcon />
-              </ListItemIcon>
-              <ListItemText primary='Day dreaming' />
-            </ListItem>
-            <ListItem disableGutters>
-              <ListItemIcon>
-                <FiberManualRecordIcon />
-              </ListItemIcon>
-              <ListItemText primary='Eating' />
-            </ListItem>
-            <ListItem disableGutters>
-              <ListItemIcon>
-                <FiberManualRecordIcon />
-              </ListItemIcon>
-              <ListItemText primary='Sleeping' />
-            </ListItem>
-          </List>
-        </div>
-        <div>
-          <Typography variant='h3'>Languages</Typography>
-          <Typography variant='subtitle1'>Interest</Typography>
-          <List className={classes.flexContainer}>
-            <ListItem className={classes.listItem}>
-              <ListItemIcon className={classes.listItemIcon}>
-                <FiberManualRecordIcon />
-              </ListItemIcon>
-            </ListItem>
-            <ListItem className={classes.listItem}>
-              <ListItemIcon className={classes.listItemIcon}>
-                <FiberManualRecordIcon />
-              </ListItemIcon>
-            </ListItem>
-            <ListItem className={classes.listItem}>
-              <ListItemIcon className={classes.listItemIcon}>
-                <FiberManualRecordIcon />
-              </ListItemIcon>
-            </ListItem>
-            <ListItem className={classes.listItem} disabled>
-              <ListItemIcon className={classes.listItemIcon}>
-                <FiberManualRecordIcon />
-              </ListItemIcon>
-            </ListItem>
-          </List>
-        </div>
+        <SectionWrapper
+          className={classes.pt2rem}
+          component={() => <BasicInfo content={data.aboutSection.basicInfo} />}
+        />
+        <SectionWrapper
+          component={() => <Interest content={data.aboutSection.interest} />}
+        />
+        <SectionWrapper
+          component={() => <Language content={data.aboutSection.languages} />}
+        />
         <Typography>
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
           commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus

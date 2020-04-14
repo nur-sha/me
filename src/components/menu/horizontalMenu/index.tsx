@@ -41,15 +41,15 @@ const menuItems: MenuItems[] = [
   },
   {
     id: 1,
-    title: 'Resume',
-    link: MAIN_ROUTES.ABOUT,
-    offsetWidth: 36,
-  },
-  {
-    id: 2,
     title: 'Education',
     link: MAIN_ROUTES.ABOUT,
     offsetWidth: 16,
+  },
+  {
+    id: 2,
+    title: 'Projects',
+    link: MAIN_ROUTES.PROJECTS,
+    offsetWidth: 36,
   },
   {
     id: 3,

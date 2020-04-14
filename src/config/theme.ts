@@ -87,28 +87,75 @@ export const getThemeMode = (type: ThemeMode = 'light'): ThemeOptions => {
       light: '#800080',
     },
     typography: {
+      fontFamily: 'Poppins, Roboto, sans-serif',
       h1: {
         fontSize: '3rem',
         fontWeight: 'bold',
+        paddingBottom: '30px',
       },
       h2: {
         fontSize: '2rem',
         fontWeight: 'bold',
+        paddingBottom: '1rem',
       },
       h3: {
-        fontSize: '2.125rem',
+        fontSize: '1.5rem',
         fontWeight: 'bold',
       },
       h4: {
-        fontSize: '1.25rem',
+        fontSize: '1.25rem', // 20px
         fontWeight: 'bold',
+        paddingBottom: '1rem',
       },
       h5: {
         fontSize: '1rem',
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
+      },
+      caption: {
+        fontSize: '0.75rem',
       },
       button: {
         fontSize: '0.75rem',
+        textTransform: 'capitalize',
+      },
+    },
+
+    overrides: {
+      MuiListItem: {
+        root: {
+          color: type === 'light' ? '#000' : '#fff',
+          '&$disabled': {
+            opacity: 1,
+            color: type === 'light' ? '#c4c4c4' : '#444444',
+          },
+        },
+        disabled: {},
+        gutters: {
+          paddingRight: '12px',
+        },
+      },
+      MuiListItemText: {
+        primary: {
+          fontSize: '1rem',
+        },
+      },
+      MuiListItemIcon: {
+        root: {
+          color: 'inherit',
+          minWidth: '24px',
+          // color: type === 'light' ? '#000' : '#fff',
+        },
+      },
+      MuiSvgIcon: {
+        root: {
+          height: '16px',
+          width: '16px',
+        },
+      },
+      MuiPaper: {
+        outlined: {
+          backgroundColor: 'transparent',
+        },
       },
     },
   });

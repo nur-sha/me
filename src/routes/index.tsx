@@ -8,9 +8,11 @@ import About from '../pages/about';
 import { useTransition, animated } from 'react-spring';
 import { __RouterContext } from 'react-router';
 import styled from 'styled-components';
+import Projects from '../pages/projects';
+import Experience from '../pages/experience';
 
 const AppWrapper = styled.div`
-  width: 100vw;
+  width: 98vw;
   overflow-x: hidden;
   padding: 48px;
 `;
@@ -38,6 +40,8 @@ const Routes = ({ onChange }: MainBarProps) => {
             <Route exact path={MAIN_ROUTES.HOME} component={Landing} />
             <Route path={MAIN_ROUTES.COMPONENTS} component={Components} />
             <Route path={MAIN_ROUTES.ABOUT} component={About} />
+            <Route path={MAIN_ROUTES.PROJECTS} component={Projects} />
+            <Route path={MAIN_ROUTES.EXPERIENCE} component={Experience} />
           </Switch>
         </animated.div>
       ))}

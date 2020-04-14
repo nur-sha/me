@@ -1,6 +1,22 @@
+@font-face {
+  font-family: Poppins;
+  src: url(assets/fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+  font-family: PoppinsBold;
+  src: url(assets/fonts/Poppins-Bold.ttf);
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+body {
+  -webkit-transition: background-color 500ms linear;
+  -ms-transition: background-color 500ms linear;
+  transition: background-color 500ms linear;
 }
 
 @media (prefers-reduced-motion: no-preference) {
