@@ -14,7 +14,6 @@ import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 import myImage from '../../assets/images/me.jpeg';
 import Notification from '../../components/notification';
 import { useSpring, animated } from 'react-spring';
-import resumePdf from '../../../public/resume.pdf';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -110,6 +109,18 @@ const Landing = () => {
   });
   const buttonclick = () => {
     setdownload(!isdownload);
+    fetch('http://localhost:3000/me/resume.pdf').then((response) => {
+      console.log('response', response);
+      console.log(response?.headers?.get('content-length'));
+      response.blob().then((blob) => {
+        let url = window.URL.createObjectURL(blob);
+        let a = document.createElement('a');
+        a.href = url;
+        a.download = 'http://localhost:3000/me/resume.pdf';
+        a.click();
+        console.log('in here');
+      });
+    });
   };
 
   return (
@@ -146,8 +157,8 @@ const Landing = () => {
             size='large'
             className={classes.resumeButton}
             onClick={buttonclick}
-            component='a'
-            href={resumePdf}
+            // component='a'
+            // href='https://github.com/nur-sha/me/raw/gh-pages/resume.pdf'
           >
             <DescriptionOutlinedIcon />
             Download Resume

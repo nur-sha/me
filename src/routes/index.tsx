@@ -38,7 +38,7 @@ const Routes = () => {
   const theme = useTheme();
   const smallPhone = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const transitions = useTransition(location, location => location.pathname, {
+  const transitions = useTransition(location, (location) => location.pathname, {
     from: {
       position: 'absolute',
       opacity: 0,
@@ -57,7 +57,7 @@ const Routes = () => {
           style={{
             ...props,
             width: smallPhone ? 'calc(100vw - 48px)' : 'calc(100% - 96px)',
-            marginTop: smallPhone ? '2.5rem' : '3.75rem',
+            marginTop: smallPhone ? '113px' : '133px',
           }}
         >
           <Switch location={item}>
