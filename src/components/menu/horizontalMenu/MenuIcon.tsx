@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { animated, useSpring, config } from 'react-spring';
 import { useTheme, Theme } from '@material-ui/core';
-import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 
 const openedTransformationConfig = (theme: Theme) => ({
   top: 'translate(2, 3) rotate(0)',
@@ -19,9 +18,10 @@ const closedTransformationConfig = (theme: Theme) => ({
 
 interface MenuProps {
   isOpened: boolean;
+  onClick?: (event: React.MouseEvent<HTMLSpanElement>) => void;
 }
 
-export function MenuIcon({ isOpened }: MenuProps) {
+export function MenuIcon({ isOpened, onClick }: MenuProps) {
   const theme = useTheme();
 
   const { top, center, bottom, color } = useSpring({
@@ -32,15 +32,17 @@ export function MenuIcon({ isOpened }: MenuProps) {
   });
 
   return (
-    <animated.svg
-      width='20'
-      height='20'
-      fill={color}
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <animated.rect width='20' height='1' transform={top as string} />
-      <animated.rect width='20' height='1' transform={center as string} />
-      <animated.rect width='20' height='1' transform={bottom as string} />
-    </animated.svg>
+    <span {...(onClick && { onClick })}>
+      <animated.svg
+        width='20'
+        height='20'
+        fill={color}
+        xmlns='http://www.w3.org/2000/svg'
+      >
+        <animated.rect width='20' height='1' transform={top as string} />
+        <animated.rect width='20' height='1' transform={center as string} />
+        <animated.rect width='20' height='1' transform={bottom as string} />
+      </animated.svg>
+    </span>
   );
 }

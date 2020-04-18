@@ -39,12 +39,13 @@ const Ratings = ({
     <>
       {Array.apply(0, Array(maxScale)).map((e, index) => (
         <ListItem
+          disableGutters
           key={index}
           className={`${classes.listItem} ${className}`}
           {...(index > activeNumber && { disabled: true })}
         >
           <ListItemIcon className={classes.listItemIcon}>
-            <FiberManualRecordIcon />
+            <FiberManualRecordIcon fontSize='inherit' />
           </ListItemIcon>
         </ListItem>
       ))}

@@ -2,28 +2,32 @@ import React, { useState } from 'react';
 import './App.css';
 import { CssBaseline } from '@material-ui/core';
 import Routes from './routes';
-import { getThemeMode } from './config/theme';
+import { getThemeMode, themeKey } from './config/theme';
 import { ThemeProvider } from '@material-ui/styles';
 import { HashRouter } from 'react-router-dom';
-
-export type ThemeMode = 'light' | 'dark';
+import { ThemeContext, ThemeMode } from './context/themeContext';
+import useLocalStorage from './hooks/useLocalStorage';
 
 function App() {
-  const [theme, setTheme] = useState<ThemeMode>('light');
+  const [mode, setMode] = useLocalStorage(themeKey, 'light');
+  const [theme, setTheme] = useState<ThemeMode>(mode);
 
   const toggleDarkTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
+    setMode(theme === 'light' ? 'dark' : 'light');
   };
 
   return (
-    <ThemeProvider theme={getThemeMode(theme)}>
-      <div className='App'>
-        <CssBaseline />
-        <HashRouter basename='/'>
-          <Routes onChange={toggleDarkTheme} />
-        </HashRouter>
-      </div>
-    </ThemeProvider>
+    <ThemeContext.Provider value={{ mode, toggleMode: toggleDarkTheme }}>
+      <ThemeProvider theme={getThemeMode(theme)}>
+        <div className='App'>
+          <CssBaseline />
+          <HashRouter basename='/'>
+            <Routes />
+          </HashRouter>
+        </div>
+      </ThemeProvider>
+    </ThemeContext.Provider>
   );
 }
 

@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import Switch, { SwitchProps } from '@material-ui/core/Switch';
-import { makeStyles, withStyles, createStyles, Theme } from '@material-ui/core';
+import { withStyles, Theme } from '@material-ui/core';
 
 const styles = (theme: Theme) => ({
   sizeSmall: {
     height: '28px',
   },
   root: {
-    height: '37px',
-    width: '52px',
+    height: '20px',
+    width: '40px',
     boxSizing: 'border-box' as 'border-box',
+    padding: 0,
   },
   switchBase: {
     padding: '4px',
-    top: '11px',
-    left: '11px',
+    top: '0px',
+    left: '0px',
     '&$checked': {
-      transform: 'translateX(15px)',
       '& $thumb': {
         backgroundColor: theme.palette.common.black,
       },
@@ -27,20 +27,20 @@ const styles = (theme: Theme) => ({
     },
   },
   track: {
-    borderRadius: 16 / 2,
+    borderRadius: '12px',
     opacity: 1,
     backgroundColor: theme.palette.common.black,
   },
   thumb: {
-    width: '7px',
-    height: '7px',
+    width: '12px',
+    height: '12px',
     boxShadow: 'none',
     backgroundColor: theme.palette.common.white,
   },
   checked: {},
 });
 
-interface BasicSwitchProps extends SwitchProps {
+export interface BasicSwitchProps extends SwitchProps {
   onChange: (
     event?: React.ChangeEvent<HTMLInputElement>,
     checked?: boolean,
@@ -62,10 +62,8 @@ const BasicSwitch = (props: BasicSwitchProps) => {
 
   return (
     <Switch
-      value='switch'
       checked={checked}
       disableRipple={true}
-      // color='primary'
       {...props}
       onChange={handleChange}
     />

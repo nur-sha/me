@@ -1,43 +1,16 @@
 import { createMuiTheme } from '@material-ui/core';
 import colors from './colors';
 import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
-import { ThemeMode } from '../App';
+import { ThemeMode } from '../context/themeContext';
 
-const theme = {
-  palette: {
-    primary: {
-      light: colors.black,
-      main: colors.white,
-      dark: colors.white,
-    },
-    secondary: {
-      light: colors.purple,
-      main: colors.purple,
-      dark: colors.brightPurple,
-      contrastText: '#fff',
-    },
-    action: {
-      hover: 'rgba(0,164,230,0.2)',
-      selected: 'rgba(0,164,230,0.2)',
-    },
-    monoChrome: {
-      light: colors.black,
-      main: colors.white,
-      dark: colors.darkGrey,
-      contrastText: '#fff',
-    },
-    text: {
-      primary: colors.black,
-      secondary: colors.darkMonochrome,
-    },
-  },
-};
+export const themeKey = 'THEME_MODE';
 
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
     menu: {
       dark: '#fff';
       light: '#6d7278';
+      color: '#6d7278';
     };
     actionButton: {
       dark: '#800080';
@@ -49,6 +22,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
     menu?: {
       dark?: string;
       light?: string;
+      color: string;
     };
     actionButton?: {
       dark?: string;
@@ -59,16 +33,8 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 
 export const getThemeMode = (type: ThemeMode = 'light'): ThemeOptions => {
   return createMuiTheme({
-    ...theme,
     palette: {
       type,
-      ...theme.palette,
-      primary: {
-        light: colors.black,
-        main: colors.black,
-        dark: colors.white,
-        contrastText: '#fff',
-      },
       background: {
         default: type === 'light' ? '#fff' : '#000',
       },
@@ -77,10 +43,17 @@ export const getThemeMode = (type: ThemeMode = 'light'): ThemeOptions => {
         secondary: type === 'light' ? '#131313' : '#c4c4c4',
         disabled: type === 'light' ? '#c4c4c4' : '#444444',
       },
+      primary: {
+        main: type === 'light' ? colors.black : colors.white,
+      },
+      secondary: {
+        main: type === 'light' ? colors.purple : colors.brightPurple,
+      },
     },
     menu: {
       dark: '#fff',
       light: '#6d7278',
+      color: type === 'light' ? '#6d7278' : '#fff',
     },
     actionButton: {
       dark: '#800080',
@@ -109,7 +82,7 @@ export const getThemeMode = (type: ThemeMode = 'light'): ThemeOptions => {
       },
       h5: {
         fontSize: '1rem',
-        // fontWeight: 'bold',
+        fontFamily: 'PoppinsBold',
       },
       caption: {
         fontSize: '0.75rem',
@@ -124,14 +97,23 @@ export const getThemeMode = (type: ThemeMode = 'light'): ThemeOptions => {
       MuiListItem: {
         root: {
           color: type === 'light' ? '#000' : '#fff',
+          display: 'flex',
+          alignItems: 'flex-start',
           '&$disabled': {
             opacity: 1,
             color: type === 'light' ? '#c4c4c4' : '#444444',
           },
+
+          '& .MuiListItemIcon-root': {
+            marginRight: '1rem',
+          },
         },
         disabled: {},
         gutters: {
-          paddingRight: '12px',
+          paddingLeft: 0,
+          '& .MuiListItemIcon-root': {
+            paddingRight: '0.75rem',
+          },
         },
       },
       MuiListItemText: {
@@ -147,12 +129,24 @@ export const getThemeMode = (type: ThemeMode = 'light'): ThemeOptions => {
         },
       },
       MuiSvgIcon: {
-        root: {
-          height: '16px',
-          width: '16px',
+        colorSecondary: {
+          color: type === 'light' ? '#131313' : '#c4c4c4',
+        },
+        fontSizeInherit: {
+          fontSize: '1rem',
+        },
+        fontSizeSmall: {
+          fontSize: '1.25rem',
+        },
+        fontSizeLarge: {
+          fontSize: '2rem',
         },
       },
       MuiPaper: {
+        root: {
+          backgroundColor: type === 'light' ? '#fff' : '#000',
+          color: type === 'light' ? '#131313' : '#c4c4c4',
+        },
         outlined: {
           backgroundColor: 'transparent',
         },
@@ -160,5 +154,3 @@ export const getThemeMode = (type: ThemeMode = 'light'): ThemeOptions => {
     },
   });
 };
-
-export default theme;

@@ -1,36 +1,21 @@
-import React, { useState } from 'react';
-import { Grid, IconButton } from '@material-ui/core';
+import React, { useContext } from 'react';
+import { Grid, makeStyles, createStyles } from '@material-ui/core';
 import HorizontalMenu from '../menu/horizontalMenu';
-import ThemeSwitcher from '../switch';
-import { MAIN_ROUTES } from '../../routes/main';
-import MenuIcon from '@material-ui/icons/Menu';
-import CloseIcon from '@material-ui/icons/Close';
+import SwitchWithLabel from '../switch/SwitchWithLabel';
+import { ThemeContext } from '../../context/themeContext';
 
-export interface MainBarProps {
-  onChange: () => void;
-}
+const useStyles = makeStyles(() =>
+  createStyles({
+    switch: {
+      marginLeft: '0px',
+    },
+  }),
+);
 
-const MainBar = ({ onChange }: MainBarProps) => {
-  const [displayFullMenu, setDisplay] = useState(
-    window.location.hash === `#${MAIN_ROUTES.HOME}`,
-  );
-  const [close, setClose] = useState(false);
+const MainBar = () => {
+  const { mode, toggleMode } = useContext(ThemeContext);
+  const classes = useStyles();
 
-  const handleMenuClick = () => {
-    setDisplay(true);
-    setClose(true);
-  };
-
-  const handleClose = () => {
-    setClose(false);
-    setDisplay(false);
-  };
-
-  const onClick = (href: string) => {
-    setDisplay(href === `#${MAIN_ROUTES.HOME}`);
-  };
-
-  console.log('close', close);
   return (
     <Grid container>
       <Grid item xs={12} lg={6}>
@@ -40,7 +25,12 @@ const MainBar = ({ onChange }: MainBarProps) => {
           justify='flex-start'
           alignItems='center'
         >
-          <ThemeSwitcher onChange={onChange} />
+          <SwitchWithLabel
+            className={classes.switch}
+            onChange={toggleMode}
+            label={`${mode} mode`}
+            checked={mode === 'dark'}
+          />
         </Grid>
       </Grid>
       <Grid item lg={6} xs={12}>
@@ -51,13 +41,7 @@ const MainBar = ({ onChange }: MainBarProps) => {
           alignItems='center'
           style={{ overflowX: 'hidden' }}
         >
-          <HorizontalMenu onClick={onClick} />
-          {/* {displayFullMenu ? (
-            <HorizontalMenu onClick={onClick} />
-          ) : (
-            <MenuIcon onClick={handleMenuClick} />
-          )}
-          {close && <CloseIcon onClick={handleClose} />} */}
+          <HorizontalMenu />
         </Grid>
       </Grid>
     </Grid>

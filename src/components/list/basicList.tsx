@@ -12,15 +12,16 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 export interface BulletsProps {
   className?: string;
   list: string[];
+  iconFontSize?: 'small' | 'inherit' | 'default' | 'large';
 }
 
 const useStyles = makeStyles(theme =>
   createStyles({
     listItem: {
-      width: 'auto',
-      paddingLeft: 0,
-      paddingTop: '0.75rem',
-      paddingBottom: 0,
+      // width: 'auto',
+      // paddingLeft: 0,
+      // paddingTop: '0.75rem',
+      // paddingBottom: 0,
     },
     listItemText: {
       margin: 0,
@@ -29,15 +30,19 @@ const useStyles = makeStyles(theme =>
   }),
 );
 
-const Bullets = ({ className, list }: BulletsProps) => {
+const Bullets = ({
+  className,
+  list,
+  iconFontSize = 'inherit',
+}: BulletsProps) => {
   const classes = useStyles();
   return (
     <List disablePadding>
       {list.map(item => {
         return (
-          <ListItem dense disableGutters key={item}>
+          <ListItem dense disableGutters key={item} className={className}>
             <ListItemIcon>
-              <FiberManualRecordIcon />
+              <FiberManualRecordIcon fontSize={iconFontSize} />
             </ListItemIcon>
             <ListItemText primary={item} className={classes.listItemText} />
           </ListItem>

@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   makeStyles,
   createStyles,
   Paper,
   Typography,
-  Dialog,
-  Grow,
+  Grid,
 } from '@material-ui/core';
-import { TransitionProps } from '@material-ui/core/transitions';
+import { summaryList } from './data';
 
 const useStyles = makeStyles(theme =>
   createStyles({
@@ -24,113 +23,47 @@ const useStyles = makeStyles(theme =>
         height: theme.spacing(20),
       },
     },
-    portal: {},
+    paper: {
+      height: '100%',
+      minHeight: '14.5rem',
+      padding: '2rem 1rem',
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    caption: {
+      marginTop: 'auto',
+    },
   }),
 );
 
-const items = [
-  {
-    id: 0,
-    name: 'Entry System',
-    company: 'Cadmus Technologies P/L',
-    year: '2012',
-    description: '',
-    techStack: '',
-  },
-  {
-    id: 1,
-    name: 'Kampung Glam Cafe',
-    company: 'Cadmus Technologies P/L',
-    year: '2012',
-    description: '',
-    techStack: '',
-  },
-  {
-    id: 2,
-    name: 'Orphans United P/L 1',
-    company: 'Cadmus Technologies P/L',
-    year: '2012',
-    description: '',
-    techStack: '',
-  },
-  {
-    id: 3,
-    name: 'Orphans United P/L 2',
-    company: 'Cadmus Technologies P/L',
-    year: '2012',
-    description: '',
-    techStack: '',
-  },
-  {
-    id: 4,
-    name: 'Orphans United P/L 3',
-    company: 'Cadmus Technologies P/L',
-    year: '2012',
-    description: '',
-    techStack: '',
-  },
-  {
-    id: 5,
-    name: 'Orphans United P/L 4',
-    company: 'Cadmus Technologies P/L',
-    year: '2012',
-    description: '',
-    techStack: '',
-  },
-];
-
-const Transition = React.forwardRef<unknown, TransitionProps>((props, ref) => (
-  <Grow {...props} />
-));
-
 const Projects = () => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const [id, setName] = useState();
-
-  const handleOpen = (e: React.MouseEvent<HTMLElement>, id: string) => {
-    setOpen(true);
-    setName(id);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    setName(null);
-  };
 
   return (
     <>
       <Typography variant='h1' align='center'>
         Projects
       </Typography>
-      <div className={classes.wrapper}>
-        {items.map(item => {
+      <Grid container spacing={3}>
+        {summaryList.map((item, index) => {
           return (
-            <Paper
-              key={item.name}
-              variant='outlined'
-              elevation={1}
-              onClick={event => handleOpen(event, item.name)}
-            >
-              <Typography variant='h4'>{item.name}</Typography>
-              <Typography variant='body1'>{item.company}</Typography>
-              <Typography variant='caption'>{item.year}</Typography>
-            </Paper>
+            <Grid item xs={12} sm={6} md={3}>
+              <Paper
+                className={classes.paper}
+                key={item.name}
+                variant='outlined'
+                elevation={1}
+              >
+                <Typography variant='h4'>{item.name}</Typography>
+                <Typography variant='body1'>{item.company}</Typography>
+                <Typography variant='caption' className={classes.caption}>
+                  {item.caption}
+                </Typography>
+              </Paper>
+            </Grid>
           );
         })}
-      </div>
-      <Dialog
-        fullScreen={true}
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Transition}
-      >
-        <div>
-          <div onClick={handleClose}>Close</div>
-          <div>Content of project goes here</div>
-        </div>
-        <div>this is a modal dialog</div>
-      </Dialog>
+      </Grid>
     </>
   );
 };

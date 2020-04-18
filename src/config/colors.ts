@@ -1,7 +1,7 @@
 const colors = {
   brightPurple: 'rgba(128, 0, 128, 1)',
   fadeBrightPurple: 'rgba(128, 0, 128, 0.5)',
-  purple: 'rgba(98, 54, 255, 1)',
+  purple: 'rgba(128, 0, 128, 1)',
   fadePurple: 'rgba(98, 54, 255, 0.5)',
   darkGrey: '#131313',
   darkMonochrome: '#444444',

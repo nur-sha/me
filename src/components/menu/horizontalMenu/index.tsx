@@ -1,11 +1,16 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Button, Theme, makeStyles, createStyles } from '@material-ui/core';
+import {
+  Button,
+  Theme,
+  makeStyles,
+  createStyles,
+  Hidden,
+} from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { MAIN_ROUTES } from '../../../routes/main';
-import { withStyles } from '@material-ui/styles';
 import { useTrail, animated } from 'react-spring';
 import { MenuIcon } from './MenuIcon';
-// import MenuIcon from '@material-ui/icons/Menu';
+import MobileMenu from './mobileMenu';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,35 +47,38 @@ const menuItems: MenuItems[] = [
   {
     id: 1,
     title: 'Education',
-    link: MAIN_ROUTES.ABOUT,
+    link: MAIN_ROUTES.EDUCATION,
     offsetWidth: 16,
   },
   {
     id: 2,
+    title: 'Experience',
+    link: MAIN_ROUTES.EXPERIENCE,
+    offsetWidth: 16,
+  },
+  {
+    id: 3,
     title: 'Projects',
     link: MAIN_ROUTES.PROJECTS,
     offsetWidth: 36,
   },
   {
-    id: 3,
+    id: 4,
     title: 'Skills',
     link: MAIN_ROUTES.ABOUT,
     offsetWidth: 42,
   },
   {
-    id: 4,
+    id: 5,
     title: 'Contact',
     link: MAIN_ROUTES.ABOUT,
     offsetWidth: 30,
   },
 ];
 
-type VisibilityType = 'hidden' | 'visible';
-
-const HorizontalMenu = ({ onClick }: HorizontalMenuProps) => {
+const HorizontalMenu = () => {
   const classes = useStyles();
   const isHomePage = window.location.hash === `#${MAIN_ROUTES.HOME}`;
-  console.log('isHomePage', isHomePage);
   const [toggle, set] = useState(isHomePage);
 
   const config = {
@@ -101,57 +109,62 @@ const HorizontalMenu = ({ onClick }: HorizontalMenuProps) => {
 
   return (
     <Fragment>
-      {trail.reverse().map(({ x, opacity, width, ...rest }, index) => {
-        const items: MenuItems = menuItems[index];
-        return (
-          <animated.div
-            key={items.id}
-            className='trails-text'
-            style={{
-              ...rest,
-              opacity,
-              // @ts-ignore
-              visibility: opacity.interpolate(o =>
-                o === 0 ? 'hidden' : 'visible',
-              ),
-              // @ts-ignore
-              width: width.setValue(
-                !toggle ? 0 : 90 - menuItems[index].offsetWidth,
-              ),
-              display: 'inline-block',
-              // @ts-ignore
-              transform: x.interpolate(x => `translate3d(${x}px, 0px, 1px)`),
-            }}
-          >
+      <Hidden mdDown>
+        {trail.reverse().map(({ x, opacity, width, ...rest }, index) => {
+          const items: MenuItems = menuItems[index];
+          return (
             <animated.div
+              key={items.id}
+              className='trails-text'
               style={{
+                ...rest,
+                opacity,
+                // @ts-ignore
+                visibility: opacity.interpolate(o =>
+                  o === 0 ? 'hidden' : 'visible',
+                ),
                 // @ts-ignore
                 width: width.setValue(
                   !toggle ? 0 : 90 - menuItems[index].offsetWidth,
                 ),
                 display: 'inline-block',
+                // @ts-ignore
+                transform: x.interpolate(x => `translate3d(${x}px, 0px, 1px)`),
               }}
             >
-              <Button
-                key={items.id}
-                classes={{
-                  root: classes.font,
+              <animated.div
+                style={{
+                  // @ts-ignore
+                  width: width.setValue(
+                    !toggle ? 0 : 90 - menuItems[index].offsetWidth,
+                  ),
+                  display: 'inline-block',
                 }}
-                component={Link}
-                to={items.link}
               >
-                {items.title}
-              </Button>
+                <Button
+                  key={items.id}
+                  classes={{
+                    root: classes.font,
+                  }}
+                  component={Link}
+                  to={items.link}
+                >
+                  {items.title}
+                </Button>
+              </animated.div>
             </animated.div>
-          </animated.div>
-        );
-      })}
+          );
+        })}
 
-      {!isHomePage && (
-        <div onClick={menuClick}>
-          <MenuIcon isOpened={toggle} />
-        </div>
-      )}
+        {!isHomePage && (
+          <div onClick={menuClick}>
+            <MenuIcon isOpened={toggle} />
+          </div>
+        )}
+      </Hidden>
+      <Hidden mdUp>
+        <MobileMenu menuList={menuItems}></MobileMenu>
+      </Hidden>
     </Fragment>
   );
 };
