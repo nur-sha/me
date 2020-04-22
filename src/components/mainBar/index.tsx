@@ -22,9 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
       top: 0,
       background: theme.palette.background.default,
       left: 0,
-      paddingLeft: '24px',
-      paddingRight: '24px',
-      paddingTop: '24px',
+      padding: '24px',
     },
   }),
 );
@@ -39,7 +37,7 @@ const MainBar = () => {
     const toggleMenu = () => {
       setPosition((oldPosition) => {
         const current = window.pageYOffset;
-        if (oldPosition > current) {
+        if (oldPosition > current || current < 10) {
           setIn(true);
         } else if (oldPosition < current) {
           setIn(false);

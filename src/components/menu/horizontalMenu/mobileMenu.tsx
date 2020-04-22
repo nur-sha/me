@@ -81,7 +81,7 @@ const MobileMenu = ({ menuList }: MenuListProps) => {
       >
         <div className={classes.wrapper}>
           <MenuIcon onClick={handleClick} isOpened={showMenu} />
-          {menuList.map(item => {
+          {menuList.map((item) => {
             return (
               <ListItem
                 className={classes.link}

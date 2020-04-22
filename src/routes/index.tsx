@@ -57,7 +57,7 @@ const Routes = () => {
           style={{
             ...props,
             width: smallPhone ? 'calc(100vw - 48px)' : 'calc(100% - 96px)',
-            marginTop: smallPhone ? '113px' : '133px',
+            marginTop: smallPhone ? '89px' : '109px',
           }}
         >
           <Switch location={item}>
