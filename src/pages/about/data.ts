@@ -15,8 +15,8 @@ const data = {
     },
     interest: ['Read articles', 'Imagine I am exercising', 'Enjoy life'],
     languages: [
-      { name: 'English', proficiency: 4 },
-      { name: 'Malay', proficiency: 5 },
+      { name: 'English', proficiency: 8 },
+      { name: 'Malay', proficiency: 10 },
     ],
     summary:
       'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate',

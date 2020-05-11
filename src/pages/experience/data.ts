@@ -11,7 +11,7 @@ const data = {
       from: '03-2017',
       end: '10-2017',
       description:
-        'Analyse and design display screen using HTML5, AngularJS and Bootstrap. Modify and implement new system functionalities using C# to suitclient requirements.',
+        'Analyse and design display screen using HTML5, AngularJS and Bootstrap. Modify and implement new system functionalities using C# to suit client requirements.',
     },
     {
       title: 'ICT Executive/Trainer',
