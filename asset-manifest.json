@@ -1,26 +1,27 @@
 {
   "files": {
-    "main.css": "/me/static/css/main.8100b0d2.chunk.css",
-    "main.js": "/me/static/js/main.7ed69793.chunk.js",
-    "main.js.map": "/me/static/js/main.7ed69793.chunk.js.map",
+    "main.css": "/me/static/css/main.77441927.chunk.css",
+    "main.js": "/me/static/js/main.7efe9830.chunk.js",
+    "main.js.map": "/me/static/js/main.7efe9830.chunk.js.map",
     "runtime-main.js": "/me/static/js/runtime-main.d40472dc.js",
     "runtime-main.js.map": "/me/static/js/runtime-main.d40472dc.js.map",
-    "static/js/2.34e0e1bf.chunk.js": "/me/static/js/2.34e0e1bf.chunk.js",
-    "static/js/2.34e0e1bf.chunk.js.map": "/me/static/js/2.34e0e1bf.chunk.js.map",
+    "static/js/2.cf6f6b68.chunk.js": "/me/static/js/2.cf6f6b68.chunk.js",
+    "static/js/2.cf6f6b68.chunk.js.map": "/me/static/js/2.cf6f6b68.chunk.js.map",
     "index.html": "/me/index.html",
-    "precache-manifest.d2b419f44a316785f273511b84bc4885.js": "/me/precache-manifest.d2b419f44a316785f273511b84bc4885.js",
+    "precache-manifest.0ee9f814262624dc251853c40cf227e3.js": "/me/precache-manifest.0ee9f814262624dc251853c40cf227e3.js",
     "service-worker.js": "/me/service-worker.js",
-    "static/css/main.8100b0d2.chunk.css.map": "/me/static/css/main.8100b0d2.chunk.css.map",
-    "static/js/2.34e0e1bf.chunk.js.LICENSE.txt": "/me/static/js/2.34e0e1bf.chunk.js.LICENSE.txt",
+    "static/css/main.77441927.chunk.css.map": "/me/static/css/main.77441927.chunk.css.map",
+    "static/js/2.cf6f6b68.chunk.js.LICENSE.txt": "/me/static/js/2.cf6f6b68.chunk.js.LICENSE.txt",
     "static/media/App.css": "/me/static/media/Poppins-Regular.41e8dead.ttf",
-    "static/media/about.jpeg": "/me/static/media/about.7a38c8fb.jpeg",
-    "static/media/experienceImage.jpeg": "/me/static/media/experienceImage.9d2b9e63.jpeg",
-    "static/media/me.jpeg": "/me/static/media/me.20a2bcab.jpeg"
+    "static/media/about.cdd1f76f.jpeg": "/me/static/media/about.cdd1f76f.jpeg",
+    "static/media/experienceImage.9a02f6cd.jpeg": "/me/static/media/experienceImage.9a02f6cd.jpeg",
+    "static/media/me.bec9b95e.jpeg": "/me/static/media/me.bec9b95e.jpeg",
+    "static/media/resume.pdf": "/me/static/media/resume.bfd30eb5.pdf"
   },
   "entrypoints": [
     "static/js/runtime-main.d40472dc.js",
-    "static/js/2.34e0e1bf.chunk.js",
-    "static/css/main.8100b0d2.chunk.css",
-    "static/js/main.7ed69793.chunk.js"
+    "static/js/2.cf6f6b68.chunk.js",
+    "static/css/main.77441927.chunk.css",
+    "static/js/main.7efe9830.chunk.js"
   ]
 }
