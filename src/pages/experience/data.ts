@@ -22,10 +22,11 @@ const data = {
         'Analyse and build system required by Principal/HOD ICT to streamline work processes using Google Apps Script. Plan, prepare and conduct staff/student ICT Training materials for ICT lesson.',
     },
     {
-      title: 'UX Engineer',
+      title: 'Frontend developer',
       caption: 'Aleph Pte Ltd',
       from: '10-2017',
-      description: 'Front end developer job scope',
+      description:
+        'Leverage on frameworks such as ReactJS/Ember/Angular to build sustainable web application Develop application using design framework such as Material UI and styled components. Conduct peer code review to ensure code quality. Practice agile methodology for all projects and use business tools such as JIRA to better manage tasks and issues.',
     },
     {
       title: 'Software Developer',

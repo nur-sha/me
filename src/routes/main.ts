@@ -5,4 +5,6 @@ export const MAIN_ROUTES = {
   PROJECTS: '/projects',
   EXPERIENCE: '/experience',
   EDUCATION: '/education',
+  CONTACT: '/sayHello',
+  SKILLS: '/skills',
 };

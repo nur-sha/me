@@ -1,15 +1,14 @@
 import React, { ReactNode } from 'react';
-import { ListItem, ListItemIcon } from '@material-ui/core';
+import { ListItem, ListItemIcon, ListItemProps } from '@material-ui/core';
 import LensOutlinedIcon from '@material-ui/icons/LensOutlined';
 
-export interface ContentListItemProps {
+export interface ContentListItemProps extends ListItemProps {
   children: ReactNode;
-  key: string;
 }
 
-const ContentListItem = ({ children, key }: ContentListItemProps) => {
+const ContentListItem = ({ children }: ContentListItemProps) => {
   return (
-    <ListItem key={key}>
+    <ListItem>
       <ListItemIcon>
         <LensOutlinedIcon color='secondary' fontSize='inherit' />
       </ListItemIcon>

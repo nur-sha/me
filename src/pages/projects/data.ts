@@ -10,24 +10,46 @@ export const summaryList = [
     id: 11,
     name: 'Temasek Connection 19',
     company: 'Temasek Holding Private Limited',
-    caption: 'ReactJS, Strapi, JIRA, BitBucket, S3',
+    caption:
+      'ReactJS, Strapi, Material-UI, styled-components, Jest, JIRA, BitBucket, S3',
     year: 2019,
     isHighlight: true,
+    description:
+      'An event management hybrid application for iOS and Android. Provide admin to create, edit and delete event, polling. Involved in  both back-end and front-end.',
+    role: [
+      'Setup frontend architecture and analyse how to breakdown design into small components',
+      'Involve in sprint planning and task allocation',
+      'Write unit test case for components',
+      'Conduct code review',
+      'Act as a bridge for front-end and back-end to ensure code consistency',
+      'Involve in daily stand up, sprint planning and task estimates',
+      'Conduct demo and attend stakeholder meeting for new/change requirement',
+      'Responsible for building application to SIT, UAT and production with GoCD',
+      'Guide junior developers',
+    ],
   },
   {
     id: 10,
     name: 'OCBC GBA',
     company: 'Overseas Chineces Banking Corporation',
-    caption: 'ReactJS, BitBucket',
+    caption: 'ReactJS, BitBucket, Material-Ui, Jest',
     year: 2019,
   },
   {
     id: 9,
     name: 'PEII Deal Tracker',
     company: 'Government Investment Company',
-    caption: 'ReactJS, Redux, AG-Grid, JIRA, GitHub, Jenkins',
+    caption: 'ReactJS, Redux, AG-Grid, Jest, JIRA, GitHub, Jenkins',
     year: 2018,
     isHighlight: true,
+    description:
+      ' A deal tracker made easy for broker to manage a deal. Implemented deal workflow from start to end. Integration with back-end. Involved in the front-end and deployment of front-end',
+    role: [
+      'Involve in daily stand up, sprint planning, sprint demo and task estimates',
+      'Responsible for building application to SIT, UAT and production with Jenkins',
+      'Write unit test case for components',
+      'Conduct code review',
+    ],
   },
   {
     id: 8,
@@ -63,7 +85,6 @@ export const summaryList = [
     company: 'Serial Multivision Pte Ltd',
     caption: 'C#, Angular, GitHub',
     year: 2016,
-    isHighlight: true,
   },
   {
     id: 3,
@@ -76,32 +97,51 @@ export const summaryList = [
     id: 2,
     name: 'Orphans United P/L 1',
     company: 'Cadmus Technologies P/L',
-    caption: 'HTML, CSS, JQUERY',
+    caption: 'HTML, CSS, JQuery',
     year: '2012',
   },
   {
     id: 1,
     name: 'Kampung Glam Cafe',
     company: 'Cadmus Technologies P/L',
-    caption: 'HTML, CSS, JQUERY',
+    caption: 'HTML, CSS, JQuery',
     year: '2012',
   },
   {
     id: 0,
     name: 'Entry System',
     company: 'Cadmus Technologies P/L',
-    caption: 'C#, Crystal Report',
+    caption: 'C#, Crystal Report, MySQLServer',
     year: '2012',
   },
 ];
 
-// const detailData = [
-//   {
-//     id: 11,
-//     name: 'Temasek Connection 19',
-//     company: 'Temasek Holding Private Limited',
-//     caption: 'ReactJS, Strapi, JIRA, BitBucket, S3',
-//     year: 2019,
-//     isHighlight: true,
-//   },
-// ];
+export const detailData = [
+  {
+    id: 11,
+    name: 'Temasek Connection 19',
+    company: 'Temasek Holding Private Limited',
+    caption: 'ReactJS, Strapi, JIRA, BitBucket, S3',
+    year: 2019,
+    description:
+      'An event management hybrid application for iOS and Android. Provide admin to create, edit and delete event, polling. Involved in  both back-end and front-end.',
+    role: [
+      'Setup frontend architecture and analyse how to breakdown design into small components',
+      'Involve in sprint planning and task allocation',
+      'Write unit test case for components',
+      'Conduct code review',
+      'Act as a bridge for front-end and back-end to ensure code consistency',
+      'Involve in daily stand up, sprint planning and task estimates',
+      'Conduct demo and attend stakeholder meeting for new/change requirement',
+      'Responsible for building application to SIT, UAT and production with GoCD',
+      'Guide junior developers',
+    ],
+  },
+  {
+    id: 9,
+    name: 'PEII Deal Tracker',
+    company: 'Government Investment Company',
+    caption: 'ReactJS, Strapi, JIRA, BitBucket, S3',
+    year: 2019,
+  },
+];

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Typography, List, ListItemIcon, ListItem } from '@material-ui/core';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import { Typography } from '@material-ui/core';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 import Ratings from '../../../components/ratings';
 
@@ -43,9 +42,7 @@ const Languages = ({ classes, className, content }: LanguagesProps) => {
         return (
           <div key={name}>
             <Typography>{name}</Typography>
-            <List className={classes.flexContainer}>
-              <Ratings activeNumber={proficiency} />
-            </List>
+            <Ratings activeNumber={proficiency} />
           </div>
         );
       })}

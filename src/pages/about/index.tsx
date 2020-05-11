@@ -7,7 +7,7 @@ import Language from './sections/language';
 import PotraitWithContent from '../layout/potraitWithContent';
 import data from './data';
 
-const useStyles = makeStyles(theme =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     pt2rem: {
       paddingTop: '2rem',
@@ -20,10 +20,8 @@ const About = () => {
 
   return (
     <PotraitWithContent potraitData={data.potraitSection}>
-      <Typography variant='h2'>About</Typography>
-      <Typography variant='h4'>
-        “Lorem ipsum dolor sit amet, consectetuer <br /> adipiscing elit. “
-      </Typography>
+      <Typography variant='h1'>About</Typography>
+      <Typography variant='h4'>{data.aboutSection.quote}</Typography>
       <SectionWrapper
         className={classes.pt2rem}
         component={() => <BasicInfo content={data.aboutSection.basicInfo} />}
@@ -34,13 +32,13 @@ const About = () => {
       <SectionWrapper
         component={() => <Language content={data.aboutSection.languages} />}
       />
-      <Typography>
+      {/* <Typography>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
         ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
         dis parturient montes, nascetur ridiculus mus. Donec quam felis,
         ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
         quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate
-      </Typography>
+      </Typography> */}
     </PotraitWithContent>
   );
 };

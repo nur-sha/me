@@ -4,6 +4,7 @@ import {
   ListItemIcon,
   makeStyles,
   createStyles,
+  List,
 } from '@material-ui/core';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
@@ -13,6 +14,7 @@ export interface RatingsProps {
   activeNumber: number;
   className?: string;
   maxRating?: number;
+  highlightActiveOnly?: boolean;
 }
 
 const useStyles = makeStyles(() =>
@@ -26,6 +28,11 @@ const useStyles = makeStyles(() =>
     listItemIcon: {
       minWidth: 'auto',
     },
+    flexContainer: {
+      display: 'flex',
+      flexDirection: 'row' as 'row',
+      padding: 0,
+    },
   }),
 );
 
@@ -33,23 +40,30 @@ const Ratings = ({
   activeNumber,
   className,
   maxRating = maxScale,
+  highlightActiveOnly = false,
 }: RatingsProps) => {
   const classes = useStyles();
   return (
-    <>
-      {Array.apply(0, Array(maxScale)).map((e, index) => (
-        <ListItem
-          disableGutters
-          key={index}
-          className={`${classes.listItem} ${className}`}
-          {...(index > activeNumber && { disabled: true })}
-        >
-          <ListItemIcon className={classes.listItemIcon}>
-            <FiberManualRecordIcon fontSize='inherit' />
-          </ListItemIcon>
-        </ListItem>
-      ))}
-    </>
+    <List className={classes.flexContainer}>
+      {Array.apply(0, Array(maxRating)).map((e, index) => {
+        const isDiabled = highlightActiveOnly
+          ? index !== activeNumber
+          : index > activeNumber;
+
+        return (
+          <ListItem
+            disableGutters
+            key={index}
+            className={`${classes.listItem} ${className}`}
+            {...(isDiabled && { disabled: isDiabled })}
+          >
+            <ListItemIcon className={classes.listItemIcon}>
+              <FiberManualRecordIcon fontSize='inherit' />
+            </ListItemIcon>
+          </ListItem>
+        );
+      })}
+    </List>
   );
 };
 

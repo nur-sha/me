@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { MAIN_ROUTES } from './main';
 import Landing from '../pages/landing/landing';
-import Components from '../pages/components';
 import MainBar from '../components/mainBar';
 import About from '../pages/about';
 import { useTransition, animated } from 'react-spring';
@@ -17,6 +16,10 @@ import {
   useTheme,
   useMediaQuery,
 } from '@material-ui/core';
+import Contact from '../pages/contact';
+import ScrollToTop from '../utilities/route';
+import Skills from '../pages/skills';
+import { isHomePage } from '../utilities/utility';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -56,17 +59,20 @@ const Routes = () => {
           key={key}
           style={{
             ...props,
+            paddingBottom: isHomePage() ? 0 : '40px',
             width: smallPhone ? 'calc(100vw - 48px)' : 'calc(100% - 96px)',
-            marginTop: smallPhone ? '89px' : '109px',
+            marginTop: smallPhone ? '89px' : '80px',
           }}
         >
+          <ScrollToTop></ScrollToTop>
           <Switch location={item}>
             <Route exact path={MAIN_ROUTES.HOME} component={Landing} />
-            <Route path={MAIN_ROUTES.COMPONENTS} component={Components} />
             <Route path={MAIN_ROUTES.ABOUT} component={About} />
             <Route path={MAIN_ROUTES.PROJECTS} component={Projects} />
             <Route path={MAIN_ROUTES.EXPERIENCE} component={Experience} />
             <Route path={MAIN_ROUTES.EDUCATION} component={Education} />
+            <Route path={MAIN_ROUTES.CONTACT} component={Contact} />
+            <Route path={MAIN_ROUTES.SKILLS} component={Skills} />
           </Switch>
         </animated.div>
       ))}

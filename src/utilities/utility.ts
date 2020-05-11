@@ -1,3 +1,5 @@
+import { MAIN_ROUTES } from '../routes/main';
+
 export const months = [
   { id: 1, shortName: 'Jan', monthName: 'January' },
   { id: 2, shortName: 'Feb', monthName: 'February' },
@@ -33,7 +35,11 @@ export const convertNumberToMonthName = (stringMonthYear: string): string => {
 
   const monthNumber = +arrayMonthYear[0];
 
-  const monthDetail = months.find(item => item.id === monthNumber);
+  const monthDetail = months.find((item) => item.id === monthNumber);
 
   return monthDetail ? `${monthDetail.shortName} ${arrayMonthYear[1]}` : '';
+};
+
+export const isHomePage = (): boolean => {
+  return window.location.hash === `#${MAIN_ROUTES.HOME}`;
 };

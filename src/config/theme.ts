@@ -2,6 +2,7 @@ import { createMuiTheme } from '@material-ui/core';
 import colors from './colors';
 import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 import { ThemeMode } from '../context/themeContext';
+import fonts from './fonts';
 
 export const themeKey = 'THEME_MODE';
 
@@ -20,69 +21,88 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 
   interface ThemeOptions {
     menu?: {
-      dark?: string;
-      light?: string;
       color: string;
-    };
-    actionButton?: {
-      dark?: string;
-      light?: string;
     };
   }
 }
+
+export enum ColorSetList {
+  PRIMARY,
+  PRIMARY_INVERTED,
+  SECONDARY,
+  SECONDARY_TEXT,
+  SECONDARY_INVERTED,
+  DISABLED,
+  MENU,
+}
+
+const getColorSet = (mode: ThemeMode, themeName: ColorSetList): string => {
+  switch (themeName) {
+    case ColorSetList.PRIMARY:
+      return mode === 'light' ? colors.black : colors.white;
+    case ColorSetList.PRIMARY_INVERTED:
+      return mode === 'light' ? colors.white : colors.black;
+    case ColorSetList.DISABLED:
+      return mode === 'light' ? colors.secondaryLight : colors.disableDark;
+    case ColorSetList.SECONDARY:
+      return mode === 'light'
+        ? colors.secondaryBaseLight
+        : colors.secondaryBaseDark;
+    case ColorSetList.SECONDARY_TEXT:
+      return mode === 'light' ? colors.secondaryDark : colors.secondaryLight;
+    case ColorSetList.MENU:
+      return mode === 'light' ? colors.menuDark : colors.white;
+    default:
+      return mode === 'light' ? colors.black : colors.white;
+  }
+};
 
 export const getThemeMode = (type: ThemeMode = 'light'): ThemeOptions => {
   return createMuiTheme({
     palette: {
       type,
       background: {
-        default: type === 'light' ? '#fff' : '#000',
+        default: getColorSet(type, ColorSetList.PRIMARY_INVERTED),
       },
       text: {
-        primary: type === 'light' ? '#000' : '#fff',
-        secondary: type === 'light' ? '#131313' : '#c4c4c4',
-        disabled: type === 'light' ? '#c4c4c4' : '#444444',
+        primary: getColorSet(type, ColorSetList.PRIMARY),
+        secondary: getColorSet(type, ColorSetList.SECONDARY_TEXT),
+        disabled: getColorSet(type, ColorSetList.DISABLED),
       },
       primary: {
-        main: type === 'light' ? colors.black : colors.white,
+        main: getColorSet(type, ColorSetList.PRIMARY),
       },
       secondary: {
-        main: type === 'light' ? colors.purple : colors.brightPurple,
+        main: getColorSet(type, ColorSetList.SECONDARY),
       },
     },
     menu: {
-      dark: '#fff',
-      light: '#6d7278',
-      color: type === 'light' ? '#6d7278' : '#fff',
-    },
-    actionButton: {
-      dark: '#800080',
-      light: '#800080',
+      color: getColorSet(type, ColorSetList.MENU),
     },
     typography: {
-      fontFamily: 'Poppins, Roboto, sans-serif',
+      fontFamily: fonts.PoppinsRegular,
       h1: {
         fontSize: '3rem',
-        fontWeight: 'bold',
+        fontFamily: fonts.PoppinsBold,
         paddingBottom: '30px',
       },
       h2: {
         fontSize: '2rem',
-        fontWeight: 'bold',
+        fontFamily: fonts.PoppinsBold,
         paddingBottom: '1rem',
       },
       h3: {
+        fontFamily: fonts.PoppinsBold,
         fontSize: '1.5rem',
-        fontWeight: 'bold',
       },
       h4: {
-        fontSize: '1.25rem', // 20px
-        fontWeight: 'bold',
+        fontSize: '1.25rem',
+        fontFamily: fonts.PoppinsBold,
         paddingBottom: '1rem',
       },
       h5: {
         fontSize: '1rem',
-        fontFamily: 'PoppinsBold',
+        fontFamily: fonts.PoppinsBold,
       },
       caption: {
         fontSize: '0.75rem',
@@ -96,12 +116,12 @@ export const getThemeMode = (type: ThemeMode = 'light'): ThemeOptions => {
     overrides: {
       MuiListItem: {
         root: {
-          color: type === 'light' ? '#000' : '#fff',
+          color: getColorSet(type, ColorSetList.PRIMARY),
           display: 'flex',
           alignItems: 'flex-start',
           '&$disabled': {
             opacity: 1,
-            color: type === 'light' ? '#c4c4c4' : '#444444',
+            color: getColorSet(type, ColorSetList.DISABLED),
           },
 
           '& .MuiListItemIcon-root': {
@@ -125,12 +145,11 @@ export const getThemeMode = (type: ThemeMode = 'light'): ThemeOptions => {
         root: {
           color: 'inherit',
           minWidth: '24px',
-          // color: type === 'light' ? '#000' : '#fff',
         },
       },
       MuiSvgIcon: {
         colorSecondary: {
-          color: type === 'light' ? '#131313' : '#c4c4c4',
+          color: getColorSet(type, ColorSetList.SECONDARY_TEXT),
         },
         fontSizeInherit: {
           fontSize: '1rem',
@@ -144,11 +163,11 @@ export const getThemeMode = (type: ThemeMode = 'light'): ThemeOptions => {
       },
       MuiPaper: {
         root: {
-          backgroundColor: type === 'light' ? '#fff' : '#000',
-          color: type === 'light' ? '#131313' : '#c4c4c4',
+          backgroundColor: getColorSet(type, ColorSetList.PRIMARY_INVERTED),
         },
         outlined: {
           backgroundColor: 'transparent',
+          color: getColorSet(type, ColorSetList.PRIMARY),
         },
       },
     },

@@ -1,19 +1,19 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Grid,
   IconButton,
   makeStyles,
   createStyles,
-  Button,
   Theme,
   Typography,
-  Snackbar,
+  Hidden,
 } from '@material-ui/core';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
-import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 import myImage from '../../assets/images/me.jpeg';
 import Notification from '../../components/notification';
-import { useSpring, animated } from 'react-spring';
+import DownloadButton from '../../components/downloadButton';
+import fonts from '../../config/fonts';
+import Typer from '../../components/typer/index';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.primary.main,
       display: 'flex',
       textAlign: 'left',
-      marginBottom: '47px',
     },
     landingWrapper: {
       display: 'flex',
@@ -30,7 +29,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     left: { color: theme.palette.primary.main },
     imageBackground: {
-      // width: 'calc(100% - 20px)',
       minHeight: 'calc(100vh - 198px)',
       background: `url(${myImage})`,
       backgroundImage: 'contain',
@@ -78,7 +76,7 @@ const useStyles = makeStyles((theme: Theme) =>
     caption: {
       textTransform: 'uppercase',
       letterSpacing: '2px',
-      fontFamily: 'PoppinsBold',
+      fontFamily: fonts.PoppinsBold,
       color: theme.palette.background.default,
       textAlign: 'center',
     },
@@ -87,7 +85,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Landing = () => {
   const classes = useStyles();
-  const email = useRef(null);
   const [open, setOpen] = useState(false);
 
   const copyToClipboard = () => {
@@ -101,38 +98,44 @@ const Landing = () => {
     setOpen(!open);
   };
 
-  const [isdownload, setdownload] = useState(false);
-
-  const spring = useSpring({
-    number: isdownload ? 100 : 0,
-    from: { number: 0 },
-  });
-  const buttonclick = () => {
-    setdownload(!isdownload);
-    fetch('http://localhost:3000/me/resume.pdf').then((response) => {
-      console.log('response', response);
-      console.log(response?.headers?.get('content-length'));
-      response.blob().then((blob) => {
-        let url = window.URL.createObjectURL(blob);
-        let a = document.createElement('a');
-        a.href = url;
-        a.download = 'http://localhost:3000/me/resume.pdf';
-        a.click();
-        console.log('in here');
-      });
-    });
-  };
-
   return (
     <div>
       <Grid container justify='flex-start' className={classes.grid} spacing={2}>
-        <Grid item xs={12} md={9}>
-          <div className={classes.imageBackground} />
-        </Grid>
-        <Grid item xs={12} md={3} className={classes.landingWrapper}>
-          <div>
-            {isdownload && <animated.span>{spring.number}</animated.span>}
-          </div>
+        <Hidden smDown>
+          <Grid item xs={12} md={7}>
+            <div className={classes.imageBackground} />
+          </Grid>
+        </Hidden>
+        <Grid item xs={12} md={5} className={classes.landingWrapper}>
+          <Grid item xs={12}>
+            <Typography variant='h1'>
+              Hello! You can call me Nur and I'm a frontend developer based in
+              Singapore
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typer
+              words={[
+                {
+                  word: 'Experience with ReactJS',
+                  boldWordFromLast: 1,
+                },
+                {
+                  word: 'Build responsive web applications',
+                  boldWordFromLast: 2,
+                },
+                {
+                  word: 'Write test with Jest',
+                  className: 'class2',
+                  boldWordFromLast: 1,
+                },
+                {
+                  word: 'Believes in simplicity',
+                  boldWordFromLast: 1,
+                },
+              ]}
+            />
+          </Grid>
           <div className={classes.wrapper}>
             <div className={classes.left}>
               <IconButton
@@ -153,16 +156,7 @@ const Landing = () => {
             </div>
           </div>
 
-          <Button
-            size='large'
-            className={classes.resumeButton}
-            onClick={buttonclick}
-            // component='a'
-            // href='https://github.com/nur-sha/me/raw/gh-pages/resume.pdf'
-          >
-            <DescriptionOutlinedIcon />
-            Download Resume
-          </Button>
+          <DownloadButton />
         </Grid>
       </Grid>
       <Notification

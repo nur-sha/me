@@ -7,13 +7,17 @@ const data = {
     image: potrait,
   },
   aboutSection: {
-    quote: 'Okay but first, lets drink coffee. ',
+    quote: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. ',
     basicInfo: {
-      age: '> 25 && < 35',
+      age: 30,
       experience: 5,
       residence: 'Singaporean',
     },
-    interest: ['Read articles', 'Imagine I am exercising', 'Enjoy life'],
+    interest: [
+      'Read articles',
+      'Browse pinterest',
+      'Watch stand-up comedy and true crime show',
+    ],
     languages: [
       { name: 'English', proficiency: 4 },
       { name: 'Malay', proficiency: 5 },

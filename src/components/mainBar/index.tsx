@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
     fixedBar: {
       position: 'fixed',
-      zIndex: 99999,
+      zIndex: 1200,
       top: 0,
       background: theme.palette.background.default,
       left: 0,
@@ -37,7 +37,7 @@ const MainBar = () => {
     const toggleMenu = () => {
       setPosition((oldPosition) => {
         const current = window.pageYOffset;
-        if (oldPosition > current || current < 10) {
+        if (oldPosition > current + 10 || current < 40) {
           setIn(true);
         } else if (oldPosition < current) {
           setIn(false);

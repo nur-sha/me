@@ -11,12 +11,14 @@ import { MAIN_ROUTES } from '../../../routes/main';
 import { useTrail, animated } from 'react-spring';
 import { MenuIcon } from './MenuIcon';
 import MobileMenu from './mobileMenu';
+import fonts from '../../../config/fonts';
+import { isHomePage } from '../../../utilities/utility';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     font: {
-      color: theme.menu[theme.palette.type],
-      fontWeight: 'bold',
+      color: theme.menu.color,
+      fontFamily: fonts.PoppinsBold,
       fontSize: 12,
     },
   }),
@@ -36,13 +38,13 @@ const menuItems: MenuItems[] = [
     id: -1,
     title: 'Home',
     link: MAIN_ROUTES.HOME,
-    offsetWidth: 26,
+    offsetWidth: 46,
   },
   {
     id: 0,
     title: 'About',
     link: MAIN_ROUTES.ABOUT,
-    offsetWidth: 26,
+    offsetWidth: 46,
   },
   {
     id: 1,
@@ -54,7 +56,7 @@ const menuItems: MenuItems[] = [
     id: 2,
     title: 'Experience',
     link: MAIN_ROUTES.EXPERIENCE,
-    offsetWidth: 16,
+    offsetWidth: 10,
   },
   {
     id: 3,
@@ -65,21 +67,21 @@ const menuItems: MenuItems[] = [
   {
     id: 4,
     title: 'Skills',
-    link: MAIN_ROUTES.ABOUT,
-    offsetWidth: 42,
+    link: MAIN_ROUTES.SKILLS,
+    offsetWidth: 30,
   },
   {
     id: 5,
     title: 'Contact',
-    link: MAIN_ROUTES.ABOUT,
-    offsetWidth: 30,
+    link: MAIN_ROUTES.CONTACT,
+    offsetWidth: 20,
   },
 ];
 
 const HorizontalMenu = () => {
   const classes = useStyles();
-  const isHomePage = window.location.hash === `#${MAIN_ROUTES.HOME}`;
-  const [toggle, set] = useState(isHomePage);
+  const homepage = isHomePage();
+  const [toggle, set] = useState(homepage);
 
   const config = {
     mass: 5,
@@ -88,8 +90,8 @@ const HorizontalMenu = () => {
   };
 
   useEffect(() => {
-    set(isHomePage);
-  }, [isHomePage]);
+    set(homepage);
+  }, [homepage]);
 
   const trail = useTrail(menuItems.length, {
     config,
@@ -104,12 +106,12 @@ const HorizontalMenu = () => {
   });
 
   const menuClick = () => {
-    set(state => !state);
+    set((state) => !state);
   };
 
   return (
     <Fragment>
-      <Hidden mdDown>
+      <Hidden smDown>
         {trail.reverse().map(({ x, opacity, width, ...rest }, index) => {
           const items: MenuItems = menuItems[index];
           return (
@@ -120,7 +122,7 @@ const HorizontalMenu = () => {
                 ...rest,
                 opacity,
                 // @ts-ignore
-                visibility: opacity.interpolate(o =>
+                visibility: opacity.interpolate((o) =>
                   o === 0 ? 'hidden' : 'visible',
                 ),
                 // @ts-ignore
@@ -129,7 +131,10 @@ const HorizontalMenu = () => {
                 ),
                 display: 'inline-block',
                 // @ts-ignore
-                transform: x.interpolate(x => `translate3d(${x}px, 0px, 1px)`),
+                transform: x.interpolate(
+                  // @ts-ignore
+                  (x) => `translate3d(${x}px, 0px, 1px)`,
+                ),
               }}
             >
               <animated.div
@@ -156,8 +161,8 @@ const HorizontalMenu = () => {
           );
         })}
 
-        {!isHomePage && (
-          <div onClick={menuClick}>
+        {!homepage && (
+          <div onClick={menuClick} style={{ marginLeft: '1rem' }}>
             <MenuIcon isOpened={toggle} />
           </div>
         )}

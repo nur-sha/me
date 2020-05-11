@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { MenuIcon } from './MenuIcon';
 import {
   Dialog,
-  Slide,
   Fade,
   makeStyles,
   Theme,
@@ -12,6 +11,7 @@ import {
 } from '@material-ui/core';
 import { TransitionProps } from '@material-ui/core/transitions/transition';
 import { Link } from 'react-router-dom';
+import fonts from '../../../config/fonts';
 
 export interface MenuList {
   title: string;
@@ -29,8 +29,7 @@ const Transition = React.forwardRef<unknown, TransitionProps>((props, ref) => (
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     wrapper: {
-      // color: theme.menu[theme.palette.type],
-      fontWeight: 'bold',
+      fontFamily: fonts.PoppinsBold,
       fontSize: 12,
       display: 'flex',
       flexDirection: 'column',
@@ -39,13 +38,13 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     link: {
       marginTop: '32px',
-      fontWeight: 'bold',
+      fontFamily: fonts.PoppinsBold,
       paddingTop: 0,
       paddingRight: 0,
       width: 'auto',
 
       '& .MuiTypography-button': {
-        fontWeight: 'bold',
+        fontFamily: fonts.PoppinsBold,
         textAlign: 'center',
         width: '100%',
       },
@@ -73,17 +72,13 @@ const MobileMenu = ({ menuList }: MenuListProps) => {
         open={showMenu}
         TransitionComponent={Transition}
         onClose={handleClick}
-        PaperProps={
-          {
-            // className: classes.object,
-          }
-        }
       >
         <div className={classes.wrapper}>
           <MenuIcon onClick={handleClick} isOpened={showMenu} />
           {menuList.map((item) => {
             return (
               <ListItem
+                key={item.title}
                 className={classes.link}
                 component={Link}
                 to={item.link}

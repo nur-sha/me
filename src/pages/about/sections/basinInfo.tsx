@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles, ListItemText } from '@material-ui/core';
 
-const useStyles = makeStyles(theme =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     listItemIcon: {
       minWidth: 'auto',
@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme =>
 );
 
 export interface BasicInfoData {
-  age: number;
+  age: string;
   experience: number;
   residence: string;
 }

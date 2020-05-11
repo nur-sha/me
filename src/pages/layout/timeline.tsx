@@ -39,7 +39,7 @@ const Timeline = ({
 
   const formatDate = (value: string): number => {
     const regex = [/^(0?[1-9]|1[0-2])-(\d{4})$/, /^\d{4}$/];
-    const hasValidValue = regex.some(item => item.test(value));
+    const hasValidValue = regex.some((item) => item.test(value));
 
     if (!hasValidValue) {
       return -31;
@@ -61,7 +61,7 @@ const Timeline = ({
 
   return (
     <PotraitWithContent potraitData={potraitSection}>
-      <Typography variant='h2'>{pageTitle}</Typography>
+      <Typography variant='h1'>{pageTitle}</Typography>
       <List disablePadding>
         {data.map((item, index) => {
           return (
